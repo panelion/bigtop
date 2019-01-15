@@ -48,7 +48,7 @@
     <solr.version>4.10.4</solr.version>
     <spark.version>2.3.0</spark.version>
     <kafka.version>0.10.1.1</kafka.version>
-    <phoenix.version>4.9.0-HBase-1.1</phoenix.version>
+    <phoenix.version>4.13.0-HBase-1.2</phoenix.version>
     <spark-smoke.version>${project.version}</spark-smoke.version>
 
     <itest-common.version>${project.version}</itest-common.version>

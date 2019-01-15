@@ -28,7 +28,9 @@ BUILD_OPTS="-Divy.home=${HOME}/.ivy2 -Dsbt.ivy.home=${HOME}/.ivy2 -Duser.home=${
             -Dyarn.version=$HADOOP_VERSION \
             -Dprotobuf.version=2.5.0 \
             -DrecompileMode=all \
-            -Pyarn -Phadoop-2.7 \
+            -Pyarn -Phadoop-2.7.4 \
+            -Pspark-2.4
+            -Pscala-2.11
             -Phive -Phive-thriftserver \
             -Psparkr \
             $SPARK_BUILD_OPTS"
@@ -36,6 +38,7 @@ BUILD_OPTS="-Divy.home=${HOME}/.ivy2 -Dsbt.ivy.home=${HOME}/.ivy2 -Duser.home=${
 ./dev/make-distribution.sh --r $BUILD_OPTS -DskipTests
 
 SPARK_SKIP_TESTS=$([ "$SPARK_RUN_TESTS" = "true" ] && echo false || echo true)
+SPARK_SKIP_TESTS=true
 
 # make-distribution.sh will only run "mvn clean package", so in order to get the
 # Spark packages installed in the local Maven repository (or to run the tests),
@@ -45,4 +48,4 @@ SPARK_SKIP_TESTS=$([ "$SPARK_RUN_TESTS" = "true" ] && echo false || echo true)
 # This is also the point that we can run the tests if desired, since tests must
 # be run after Spark has already been packaged.
 # See http://spark.apache.org/docs/latest/building-spark.html#spark-tests-in-maven
-mvn $BUILD_OPTS install -DskipTests=$SPARK_SKIP_TESTS
+mvn $BUILD_OPTS clean install -DskipTests=$SPARK_SKIP_TESTS

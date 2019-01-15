@@ -18,11 +18,11 @@ set -ex
 . `dirname $0`/bigtop.bom
 
 mvn -DskipTests \
-    -Dhadoop.version=$HADOOP_VERSION  \
-    -Dhadoop-two.version=$HADOOP_VERSION  \
-    -Dhbase.version=$HBASE_VERSION  \
+    -Dhadoop.version=2.7.4  \
+    -Dhadoop-two.version=2.7.3  \
+    -Dhbase.version=1.2.6  \
     -Dflume.version=$FLUME_VERSION  \
-    -Dspark.version=${SPARK1_VERSION} \
+    -Dspark.version=2.3.0 \
     -Dhive.version=${HIVE_VERSION}  \
     clean install "$@"
 rm -rf build
